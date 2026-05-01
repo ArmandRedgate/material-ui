@@ -165,6 +165,8 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     ...other
   } = props;
 
+  const messageId = React.useId();
+
   const ownerState = {
     ...props,
     color,
@@ -193,6 +195,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     additionalProps: {
       role,
       elevation: 0,
+      'aria-labelledby': messageId,
     },
   });
 
@@ -208,6 +211,9 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     elementType: AlertMessage,
     externalForwardedProps,
     ownerState,
+    additionalProps: {
+      id: messageId,
+    },
   });
 
   const [ActionSlot, actionSlotProps] = useSlot('action', {
